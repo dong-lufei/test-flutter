@@ -54,11 +54,11 @@ class _MyHomeState extends State<MyHome> {
           // type: BottomNavigationBarType.shifting,
           type: BottomNavigationBarType.fixed,
           onTap: (index) => {
-            print(index),
+            print("index: $index"),
             setState(() {
               curPageIndex = index;
             }),
-            print(pages[curPageIndex]),
+            print("pages:${pages[curPageIndex]}"),
           },
         ));
   }
