@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1> vue</h1>
+    <pre>
+import { h } from 'vue'
+// 导入工具方法
+import { cfxify, cfxifys, keyMirror as km } from '../../cfx.v3/src/index'
+// 使用
+const cfx = cfxify.vue(h)
+
+
+import './App.css'
+import logo from './assets/logo.png'
+
+  // 导入组件
+import HelloWorld from './components/HelloWorld'
+
+const C = cfxifys(cfx)({
+  ...km([ 'img' ]) //注册当前用到的所有元素：比如 img元素
+, HelloWorld ，// 兄弟层级 注册用到的组件：比如HelloWorld组件
+})
+
+const App = {
+
+  render() {
+  // 返回一个元素方式
+    return C.h1({}, 'Hello World!!!')
+
+  // 用数组返回多个同级元素方式
+    return [
+    //第一个参数对象是元素或组件的属性或事件
+    //第二个参数：
+        //字符串是innerText
+        //数组是子元素
+      C.h1({}, "我是innerText"),
+      C.img(
+      // 普通img元素  属性  属性值
+        {
+          alt: 'Vue logo'
+        , src: logo
+        }
+      )
+    ,
+      C.HelloWorld(
+      // 组件
+      // 组件属性  属性值
+        {
+          msg: 'Hello Vue 3 + Vite'
+        }
+      )
+    , C.button(
+      // 事件
+        {
+          onClick: ($event) => this.state.count++,
+          // console.log('clicked', $event.target)
+        },
+        `count is: ${this.state.count}`
+      ),
+    ]
+  }
+
+}
+
+export default App
+
+            
+   </pre
+   >
+         
+  
+<h1> react</h1>
+
+<pre
+>
+import { useState } from "react";
+import { jsx as h } from "react/jsx-runtime";
+import D, { keyMirror as km } from "../../cfx.v3/src/index";
+const C = D(
+  { react: h },
+  km(["div", "header", "img", "p", "button", "code", "a"])
+);
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    C.div.className`App`,
+    C.header.className`App-header`([
+      C.img.src(logo).className`App-logo`.alt`logo`(),
+
+      C.p("Hello Vite + React!"),
+
+      C.p(
+        C.button.onClick(() => setCount((count) => count + 1))(
+          `count is ${count}`
+        )
+      ),
+
+      C.p(["Edit ", C.code("App.jsx"), " and save to test HMR updates."]),
+
+      C.p([
+        C.a.className`App-link`.href`https://reactjs.org`.target`_blank`
+          .rel`noopener noreferrer`("Learn React"),
+
+        " | ",
+
+        C.a.className`App-link`.href`https://vitejs.dev/guide/features.html`
+          .target`_blank`.rel`noopener noreferrer`("Vite Docs"),
+      ]),
+    ])
+
+    // <div className="App">
+    //   <header className="App-header">
+    //     <img src={logo} className="App-logo" alt="logo" />
+    //     <p>Hello Vite + React!</p>
+    //     <p>
+    //       <button onClick={() => setCount((count) => count + 1)}>
+    //         count is: {count}
+    //       </button>
+    //     </p>
+    //     <p>
+    //       Edit <code>App.jsx</code> and save to test HMR updates.
+    //     </p>
+    //     <p>
+    //       <a
+    //         className="App-link"
+    //         href="https://reactjs.org"
+    //         target="_blank"
+    //         rel="noopener noreferrer"
+    //       >
+    //         Learn React
+    //       </a>
+    //       {' | '}
+    //       <a
+    //         className="App-link"
+    //         href="https://vitejs.dev/guide/features.html"
+    //         target="_blank"
+    //         rel="noopener noreferrer"
+    //       >
+    //         Vite Docs
+    //       </a>
+    //     </p>
+    //   </header>
+    // </div>
+  );
+
+  
+      
+   </pre
+    >
+  </body>
+</html>
